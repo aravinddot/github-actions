@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test'
 
 
-
+const baseURL = process.env.BASE_URL || ''
 
 
 test.describe('Interactive Playwright Sandbox Basic', () => {
 
 
     test('Click, Double Click, Hover, Tooltip, Static Dropdown', async ({ page }) => {
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-basic')
+        await page.goto(baseURL)
         await page.getByTestId('single-click-btn').click()
         await expect(page.getByText('Single click completed.')).toBeVisible()
         await expect(page.getByTestId('single-click-status')).toContainText('Single click completed.')
@@ -24,7 +24,7 @@ test.describe('Interactive Playwright Sandbox Basic', () => {
 
 
     test('Inputs, Checkbox, Radio, Dropdown', async ({ page }) => {
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-basic')
+        await page.goto(baseURL)
 
         const name = 'Playwright'
         const mailId = 'info@playwrightmasteryacademy.com'
@@ -44,7 +44,7 @@ test.describe('Interactive Playwright Sandbox Basic', () => {
 
 
     test('Dynamic Waits, Keyboard', async ({ page }) => {
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-basic')
+        await page.goto(baseURL)
 
         await page.getByTestId('async-load-btn').click()
 
@@ -61,7 +61,7 @@ test.describe('Interactive Playwright Sandbox Basic', () => {
 
 
     test('Text and Attribute Extraction', async ({ page }) => {
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-basic')
+        await page.goto(baseURL)
 
         //extract only visible text in UI
         const innerTextvalue = await page.getByTestId('extract-textcontent-target').innerText()
@@ -106,7 +106,7 @@ test.describe('Interactive Playwright Sandbox Basic', () => {
 
     test('element state checks - checked', async ({ page }) => {
 
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-basic')
+        await page.goto(baseURL)
         // conditional handling
 
         // isChecked(), isDisabled(), isVisible(), isHidden, isEditable()
@@ -131,7 +131,7 @@ test.describe('Interactive Playwright Sandbox Basic', () => {
 
     test('verify the dropdown is disabled', async({page})=> {
     test.setTimeout(180000)
-        await page.goto('https://playwright-mastery-academy-app.vercel.app/practice/sandbox-advanced')
+        await page.goto(baseURL)
 
         const disabledCheck = await page.getByTestId('dynamic-option-select').isDisabled();
 

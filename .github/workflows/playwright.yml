@@ -8,6 +8,7 @@ jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment: playwright
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -23,6 +24,8 @@ jobs:
 
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+        BASE_URL: ${{ vars.BASE_URL }}
 
     - name: Generate Allure Report
       run: allure generate allure-results --clean --single-file -o allure-report
