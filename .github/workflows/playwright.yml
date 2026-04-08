@@ -23,9 +23,10 @@ jobs:
       run: npm install -g allure-commandline --save-dev
 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: ${{ secrets.PLAYWRIGHT_RUN_COMMAND }}
       env:
         BASE_URL: ${{ vars.BASE_URL }}
+        run: echo ${{ secrets.PLAYWRIGHT_RUN_COMMAND }}
 
     - name: Generate Allure Report
       run: allure generate allure-results --clean --single-file -o allure-report
